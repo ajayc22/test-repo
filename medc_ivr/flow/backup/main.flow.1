@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<AppFlowDoc>
+    <ApplicationFlow nextObjectId="32" package="flow" version="5.0">
+        <FlowGraph>
+            <FlowNode class="com.avaya.sce.callflow.internal.appflow.AppRoot" id="1" version="3.1">
+                <Property name="Name" value="AppRoot"/>
+                <FlowItem class="com.avaya.sce.callflow.internal.flowitem.AppRoot" id="2" version="1.2">
+                    <ItemProperties>
+                        <Property name="StartNodeID" value="18"/>
+                    </ItemProperties>
+                    <ChildItems>
+                        <FlowItem class="com.avaya.sce.callflow.internal.flowitem.Property" id="8" version="1.2">
+                            <ItemProperties>
+                                <Property name="fetchtimeout" value="15s"/>
+                            </ItemProperties>
+                            <ChildItems/>
+                        </FlowItem>
+                        <FlowItem class="com.avaya.sce.callflow.internal.flowitem.Catch" id="9" version="1.2">
+                            <ItemProperties>
+                                <Property name="event.name" value="java.sql.SQLException"/>
+                            </ItemProperties>
+                            <ChildItems>
+                                <FlowItem class="com.avaya.sce.callflow.internal.flowitem.GoTo" id="14" version="1.2">
+                                    <ItemProperties>
+                                        <Property name="Name" value="DBFailure"/>
+                                    </ItemProperties>
+                                    <ChildItems/>
+                                </FlowItem>
+                            </ChildItems>
+                        </FlowItem>
+                        <FlowItem class="com.avaya.sce.callflow.internal.flowitem.Catch" id="10" version="1.2">
+                            <ItemProperties>
+                                <Property name="event.name" value="error"/>
+                            </ItemProperties>
+                            <ChildItems>
+                                <FlowItem class="com.avaya.sce.callflow.internal.flowitem.GoTo" id="15" version="1.2">
+                                    <ItemProperties>
+                                        <Property name="Name" value="ErrorCatch"/>
+                                    </ItemProperties>
+                                    <ChildItems/>
+                                </FlowItem>
+                            </ChildItems>
+                        </FlowItem>
+                        <FlowItem class="com.avaya.sce.callflow.internal.flowitem.Catch" id="11" version="1.2">
+                            <ItemProperties>
+                                <Property name="event.name" value="error.runtime"/>
+                            </ItemProperties>
+                            <ChildItems>
+                                <FlowItem class="com.avaya.sce.callflow.internal.flowitem.GoTo" id="16" version="1.2">
+                                    <ItemProperties>
+                                        <Property name="Name" value="ErrorCatch"/>
+                                    </ItemProperties>
+                                    <ChildItems/>
+                                </FlowItem>
+                            </ChildItems>
+                        </FlowItem>
+                        <FlowItem class="com.avaya.sce.callflow.internal.flowitem.Catch" id="12" version="1.2">
+                            <ItemProperties>
+                                <Property name="event.name" value="error.badfetch"/>
+                            </ItemProperties>
+                            <ChildItems>
+                                <FlowItem class="com.avaya.sce.callflow.internal.flowitem.GoTo" id="17" version="1.2">
+                                    <ItemProperties>
+                                        <Property name="Name" value="ErrorBadfetch"/>
+                                    </ItemProperties>
+                                    <ChildItems/>
+                                </FlowItem>
+                            </ChildItems>
+                        </FlowItem>
+                        <FlowItem class="com.avaya.sce.callflow.internal.flowitem.OnDisconnect" id="13" version="1.2">
+                            <ItemProperties/>
+                            <ChildItems/>
+                        </FlowItem>
+                    </ChildItems>
+                </FlowItem>
+            </FlowNode>
+            <FlowNode class="com.avaya.sce.callflow.internal.appflow.Servlet" id="18" version="3.1">
+                <Property name="FlowNodeEditPart.WidgetX" value="147"/>
+                <Property name="FlowNodeEditPart.WidgetY" value="-85"/>
+                <Property name="Name" value="callStartTime"/>
+                <FlowItem class="com.avaya.sce.callflow.internal.flowitem.Servlet" id="19" version="1.2">
+                    <ItemProperties/>
+                    <ChildItems>
+                        <FlowItem class="com.avaya.sce.callflow.internal.flowitem.GoTo" id="20" version="1.2">
+                            <ItemProperties>
+                                <Property name="LinkedNodeID" value="22"/>
+                                <Property name="Name" value="Default"/>
+                            </ItemProperties>
+                            <ChildItems/>
+                        </FlowItem>
+                    </ChildItems>
+                </FlowItem>
+            </FlowNode>
+            <FlowNode class="com.avaya.sce.callflow.internal.appflow.Return" id="3" version="3.1">
+                <Property name="FlowNodeEditPart.WidgetX" value="13"/>
+                <Property name="FlowNodeEditPart.WidgetY" value="153"/>
+                <Property name="Name" value="End"/>
+            </FlowNode>
+            <FlowNode class="com.avaya.sce.callflow.internal.appflow.Data" id="22" version="3.1">
+                <Property name="FlowNodeEditPart.WidgetX" value="338"/>
+                <Property name="FlowNodeEditPart.WidgetY" value="-80"/>
+                <Property name="Name" value="initConfig"/>
+                <FlowItem class="com.avaya.sce.callflow.internal.flowitem.Data" id="23" version="1.2">
+                    <ItemProperties/>
+                    <ChildItems>
+                        <FlowItem class="com.avaya.sce.callflow.internal.flowitem.LocalVariables" id="24" version="1.2">
+                            <ItemProperties>
+                                <Property name="Name" value="LocalVariables"/>
+                            </ItemProperties>
+                            <ChildItems/>
+                        </FlowItem>
+                        <FlowItem class="com.avaya.sce.callflow.internal.flowitem.IfCondition" id="32" version="1.2">
+                            <ItemProperties/>
+                            <ChildItems>
+                                <FlowItem class="com.avaya.sce.callflow.internal.flowitem.Next" id="25" version="1.2">
+                                    <ItemProperties>
+                                        <Property name="LinkedNodeID" value="27"/>
+                                        <Property name="Name" value="Default"/>
+                                    </ItemProperties>
+                                    <ChildItems/>
+                                </FlowItem>
+                            </ChildItems>
+                        </FlowItem>
+                    </ChildItems>
+                </FlowItem>
+            </FlowNode>
+            <FlowNode class="com.avaya.sce.callflow.internal.appflow.Form" id="27" version="3.1">
+                <Property name="FlowNodeEditPart.WidgetX" value="503"/>
+                <Property name="FlowNodeEditPart.WidgetIcon" value="announce.gif"/>
+                <Property name="FlowNodeEditPart.WidgetY" value="-76"/>
+                <Property name="Name" value="Play_SeasonalMsg"/>
+                <FlowItem class="com.avaya.sce.callflow.internal.flowitem.Form" id="28" version="1.2">
+                    <ItemProperties/>
+                    <ChildItems>
+                        <FlowItem class="com.avaya.sce.callflow.internal.flowitem.Prompt" id="29" version="1.2">
+                            <ItemProperties/>
+                            <ChildItems/>
+                        </FlowItem>
+                        <FlowItem class="com.avaya.sce.callflow.internal.flowitem.Submit" id="30" version="1.2">
+                            <ItemProperties/>
+                            <ChildItems/>
+                        </FlowItem>
+                    </ChildItems>
+                </FlowItem>
+            </FlowNode>
+            <NodeConnection id="21" version="1.2">
+                <SourceNode id="1"/>
+                <TargetNode id="18"/>
+                <Property name="Connection.SourceObjectID" value="2"/>
+                <Property name="Connection.TargetObjectID" value="18"/>
+            </NodeConnection>
+            <NodeConnection id="26" version="1.2">
+                <SourceNode id="18"/>
+                <TargetNode id="22"/>
+                <Property name="Connection.SourceObjectID" value="20"/>
+                <Property name="Connection.TargetObjectID" value="22"/>
+            </NodeConnection>
+            <NodeConnection id="31" version="1.2">
+                <SourceNode id="22"/>
+                <TargetNode id="27"/>
+                <Property name="Connection.SourceObjectID" value="25"/>
+                <Property name="Connection.TargetObjectID" value="27"/>
+            </NodeConnection>
+        </FlowGraph>
+        <ProjectEventTypes>
+            <EventType class="com.avaya.sce.callflow.internal.event.EventType" id="4" version="1.2">
+                <Property name="Name" value="java.sql.SQLException"/>
+            </EventType>
+            <EventType class="com.avaya.sce.callflow.internal.event.EventType" id="5" version="1.2">
+                <Property name="Name" value="error"/>
+            </EventType>
+            <EventType class="com.avaya.sce.callflow.internal.event.EventType" id="6" version="1.2">
+                <Property name="Name" value="error.runtime"/>
+            </EventType>
+            <EventType class="com.avaya.sce.callflow.internal.event.EventType" id="7" version="1.2">
+                <Property name="Name" value="error.badfetch"/>
+            </EventType>
+        </ProjectEventTypes>
+    </ApplicationFlow>
+</AppFlowDoc>
